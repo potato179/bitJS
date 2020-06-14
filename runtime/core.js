@@ -18,25 +18,25 @@ module.exports = (target) => {
     let command = v.slice(0, 4)
     let arg0 = v.slice(4, 12)
     let arg1 = v.slice(12, 20)
-
+// 0 = I, 1 = l
     switch (command) {
-      case '0000':
+      case 'IIII':
         pnt = parseInt(arg0, 2)
         break
 
-      case '0001':
+      case 'IIIl':
         memory[pnt] = parseInt(arg0, 2) <= 0 ? memory[parseInt(arg1, 2)] : parseInt(arg0, 2)
         break
 
-      case '0010':
+      case 'IIlI':
         memory[pnt] += parseInt(arg0, 2) <= 0 ? memory[parseInt(arg1, 2)] : parseInt(arg0, 2)
         break
 
-      case '0011':
+      case 'IIll':
         memory[pnt] -= parseInt(arg0, 2) <= 0 ? memory[parseInt(arg1, 2)] : parseInt(arg0, 2)
         break
 
-      case '0100':
+      case 'IlII':
         let dum1 = ''
         for (let counter = parseInt(arg0, 2); counter <= parseInt(arg1, 2); counter++) {
           if (!memory[counter]) memory[counter] = 0
@@ -45,7 +45,7 @@ module.exports = (target) => {
         console.log(dum1)
         break
 
-      case '0101':
+      case 'IlIl':
         let dum2 = ''
         for (let counter = parseInt(arg0, 2); counter <= parseInt(arg1, 2); counter++) {
           if (!memory[counter]) memory[counter] = 0
@@ -54,7 +54,7 @@ module.exports = (target) => {
         console.log(dum2)
         break
 
-      case '1111':
+      case 'llll':
         process.exit(parseInt(arg0, 2))
 
       default:
